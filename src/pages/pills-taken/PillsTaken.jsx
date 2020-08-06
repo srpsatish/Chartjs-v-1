@@ -1,63 +1,50 @@
 import React, { Component } from "react";
 import "./pillstaken.scss";
-import { Line } from "react-chartjs-2";
+import Chart from "../../components/chart/Chart"
+
+
 
 export default class PillsTaken extends Component {
   constructor(props) {
-    super(props);
+    super (props);
+
     this.state = {
-      pillsData: {
+      pillsTakenData : {}
+    }
+  }
+
+  componentWillMount(){
+    this.getChartData();
+  }
+
+  getChartData() {
+    this.setState({
+      pillsTakenData : {
         datasets: [
           {
             data: [0, 1, 3, 6, 0],
             backgroundColor: "rgba(0, 0, 0, 0.8)",
             showLine: false,
             fill: false,
-            pointRadius : 8,
+            pointRadius: 8,
           },
           {
             data: [0, 4, 0, 2, 0],
             backgroundColor: "rgba(0, 0, 0, 0.8)",
             showLine: false,
             fill: false,
-            pointRadius : 8,
+            pointRadius: 8,
           },
         ],
-      },
-      options: {
-        legend: {
-          display: false,
-        },
-        scales: {
-            xAxes: [{
-                type: 'category',
-                labels: ["00:00", "06:00", "12:00", "18:00", "24:00"]
-            }],
-          yAxes: [
-            {
-              ticks: {
-                reverse: true,
-                callback: (value) => {
-                  return "Medicine " + value;
-                },
-                max: 7,
-                min: 1,
-              },
-            },
-          ],
-        },
-      },
-    };
+      }
+    })
   }
+  
   render() {
+
     return (
       <div className="chart">
-        <Line
-          data={this.state.pillsData}
-          width={100}
-          height={40}
-          options={this.state.options}
-        />
+        <Chart chartData={this.state.pillsTakenData}/>
       </div>
     );
   }
