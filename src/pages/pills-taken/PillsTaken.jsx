@@ -37,7 +37,7 @@ export default class PillsTaken extends Component {
             {
               ticks: {
                 reverse: true,
-                callback: function (value, index, values) {
+                callback: (value) => {
                   return "Medicine " + value;
                 },
                 max: 7,
