@@ -19,7 +19,12 @@ export default class PillsMissed extends Component {
       pillsMissedData: {
         datasets: [
           {
-            data: [0, 2, 4, 1, 0],
+            data: [
+              // {
+              //   t: new Date(),
+              //   y: 1,
+              // },
+            ],
             backgroundColor: "rgba(0, 0, 0, 0.8)",
             showLine: false,
             fill: false,

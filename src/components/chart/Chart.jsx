@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 
-
-
 export default class Chart extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      chartData : props.chartData
-    }
+      chartData: props.chartData,
+    };
   }
   render() {
-
     const options = {
       responsive: true,
       legend: {
@@ -21,8 +18,13 @@ export default class Chart extends Component {
       scales: {
         xAxes: [
           {
-            type: "category",
-            labels: ["00:00", "06:00", "12:00", "18:00", "24:00"],
+            type: "time",
+            time: {
+              // stepSize: 6,
+              displayFormats: {
+                quarter: "hA",
+              },
+            },
           },
         ],
         yAxes: [
@@ -43,7 +45,7 @@ export default class Chart extends Component {
 
     return (
       <div className="chart">
-        <Line data={this.state.chartData} options={options} />
+        <Line data={this.state.chartData} height={130} options={options} />
       </div>
     );
   }
